@@ -4,9 +4,15 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+from pymongo import MongoClient
+
+alex=MongoClient('mongodb+srv://tampier:tampier@cluster0.wybmf.mongodb.net/ecotag?retryWrites=true&w=majority')
+db = alex['ecotag']
+collection = db['object']
 
 @app.get("/")
 def read_root():
+    collection.insert_one({"Hello":"World"})
     return {"Hello": "World"}
 
 
