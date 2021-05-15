@@ -1,6 +1,6 @@
 import uuid
 
-def get_info_from_quest (dict):
+def get_object_from_quest (dict):
     object_id = uuid.uuid4()
     form_response=dict["form_response"]
     answers=form_response["answers"]

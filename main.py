@@ -4,6 +4,8 @@ from fastapi import FastAPI, Request
 
 app = FastAPI()
 
+from process_typeform import get_object_from_quest
+
 from pymongo import MongoClient
 
 alex=MongoClient('mongodb+srv://tampier:tampier@cluster0.wybmf.mongodb.net/ecotag?retryWrites=true&w=majority')
@@ -24,5 +26,6 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 @app.post("/object")
 def create_object(request: Dict[Any, Any]):
-    collection.insert_one({"object": request})
-    return {"item_id": "idddd"}
+    object=get_object_from_quest(request)
+    collection.insert_one(object)
+    return object
