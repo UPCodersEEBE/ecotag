@@ -1,6 +1,5 @@
-from process_typeform import get_impact_from_obj
 
-from queries_mongo import get_events_id_from_obj
+from queries_mongo import get_events_id_from_obj,get_impact_from_obj
 from pymongo import MongoClient
 
 alex=MongoClient('mongodb+srv://tampier:tampier@cluster0.wybmf.mongodb.net/ecotag?retryWrites=true&w=majority')
