@@ -13,7 +13,7 @@ def get_object_from_quest (dict):
         predecessors = []
 
     object_info = {
-        "object_id":object_id,
+        "_id":object_id,
         "description" :description,
         "predecessors":predecessors
     }
