@@ -14,7 +14,6 @@ def update_event_from_object(event):
     query={"_id":object_id}
 
     prev_impact= get_impact_from_obj(object_id)
-    print(prev_impact)
     new_impact= event["impact"]
     for k in new_impact.keys():
         if k not in prev_impact.keys():
@@ -23,9 +22,7 @@ def update_event_from_object(event):
     newvalues = { "$set": { "impact": prev_impact } }
     
     list_of_events=get_events_id_from_obj(object_id)
-    print (list_of_events)
     list_of_events.append(event_id)
-    print (list_of_events)
 
     newvalues = { "$set": { "impact": prev_impact , "events": list_of_events} }
 
