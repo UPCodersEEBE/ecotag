@@ -2,38 +2,43 @@ import uuid
 
 from queries_mongo import get_events_id_from_obj, get_impact_from_obj
 
+from functions_for_process_typeform import get_predecessors_environmental_impact
+from functions_for_process_typeform import get_fraction_from_predecessors
 
-def get_object_from_quest (dict):
+
+def get_object_from_quest (quest):
     object_id = str(uuid.uuid4())
-    form_response=dict["form_response"]
+    form_response=quest["form_response"]
     answers=form_response["answers"]
     
     description = answers[0]["text"]
-    if answers[1]["boolean"]:
-        predecessors = answers[2]["text"]
-        if "," in predecessors:
-         predecessors = list(f"[{predecessors}]")
-        else:
-            predecessors=[predecessors]
-        environmental_impact={}
-        for predecessor in predecessors:
-            impact=get_impact_from_obj(predecessor)
-            for key in impact:
-                if key in environmental_impact.keys():
-                    environmental_impact[key] += impact[key]
-                else:
-                    environmental_impact[key] = impact[key]
-                
-         
+    if answers[3]["boolean"]:
+        predecessors = answers[5]["text"]
+        environmental_impact = get_predecessors_environmental_impact(predecessors)             
     else:
         predecessors = []
+
+    category = answers[1]["choice"]
+    weight = answers[2]["number"]
+    recycled = answers[3]["boolean"]
+
+    if answers[3]["boolean"]:
+        fraction_predecessors = answers[6]["text"]
+        environmental_impact = get_fraction_from_predecessors(fraction_predecessors)             
+    else:
+        fraction_predecessors = []
+
+    predecessor_dict = dict(zip(predecessors, fraction_predecessors))
 
     object_info = {
         "_id":object_id,
         "description" :description,
-        "predecessors":predecessors,
+        "predecessors":predecessor_dict,
         "events":[],
-        "impact":environmental_impact
+        "impact":environmental_impact,
+        "category":category,
+        "weight": weight,
+        "recycled": recycled,
     }
 
     return object_info
