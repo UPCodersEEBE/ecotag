@@ -3,7 +3,7 @@ from threading import Event
 from typing import Optional, Any, Dict
 
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -76,8 +76,8 @@ async def object_info(id:str):
 async def last_object(request: Request):
     object = object_collection.find().limit(1).sort([('$natural',-1)])
     id=str(list(object)[0]["_id"])
-    qr=normal_qr(id)
-    return templates.TemplateResponse("items.html", {"request": request, "id":id})
+    normal_qr(id)
+    return FileResponse(f"static/{id}.png")
 
 @app.get("/qr_coloraines/{id}")
 async def qr_coloraines(request: Request, id:str):
