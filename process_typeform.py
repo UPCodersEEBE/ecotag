@@ -1,6 +1,6 @@
 import uuid
 
-from queries_mongo import get_number_of_events_from_obj
+from queries_mongo import get_events_id_from_obj
 
 
 def get_object_from_quest (dict):
@@ -31,7 +31,7 @@ def get_event_from_quest(dict):
     answers=form_response["answers"]
     
     object_id = answers[0]["text"]
-    n=get_number_of_events_from_obj(object_id)
+    n=len(get_events_id_from_obj(object_id))
     event_id=object_id+"_"+str(n)
 
     description = answers[1]["text"]
