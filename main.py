@@ -43,7 +43,7 @@ event_collection = db['events']
 
 @app.get("/")
 def read_root():
-    object_collection.insert_one({"Hello":"World"})
+    print("Hello")
     return {"Hello": "World"}
 
 

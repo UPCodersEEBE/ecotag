@@ -7,7 +7,7 @@ from functions_for_process_typeform import get_fraction_from_predecessors
 
 
 def get_object_from_quest (quest):
-    object_id = str(uuid.uuid4())
+    object_id = str(uuid.uuid4())[0:12]
     form_response=quest["form_response"]
     answers=form_response["answers"]
     
