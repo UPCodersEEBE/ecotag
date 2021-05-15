@@ -12,7 +12,6 @@ def update_event_from_object(event):
     event_id = { "_id": event["_id"] }
     object_id= event["object"]
     query={"_id":object_id}
-    print(object_id)
 
     prev_impact= get_impact_from_obj(object_id)
     print(prev_impact)
@@ -22,9 +21,10 @@ def update_event_from_object(event):
             prev_impact[k]=0
         prev_impact[k]+=new_impact[k]
     newvalues = { "$set": { "impact": prev_impact } }
-    print(newvalues)
     
-    list_of_events=get_events_id_from_obj(object_id).append(event_id)
+    list_of_events=get_events_id_from_obj(object_id)
+    print (list_of_events)
+    list_of_events.append(event_id)
     print (list_of_events)
 
     newvalues = { "$set": { "impact": prev_impact , "events": list_of_events} }
