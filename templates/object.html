@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img src="/static/{{object._id}}.png">
+    </div>
+    <div class="col">
+      <h1>{{object.description}}</h1>
+      <h2>Object ID: {{object._id}}</h2>
+      <p> {{object}} <p>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col">
+        <div class="card text-center" style="width: 18rem;">
+          <i class="fas fa-tint"></i>
+          <div class="card-body">
+            <h5 class="card-title">{{ object.impact["H2O"]}} L of water</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ object.impact["CO2"]}} kg of CO₂</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ object.impact["E"]}} kWh</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}
