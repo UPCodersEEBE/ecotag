@@ -34,7 +34,7 @@ def last_record():
     id=str(list(object)[0]["_id"])
     print(type(object))
     qr=normal_qr(id)
-    return qr
+    return 
 
 
 
