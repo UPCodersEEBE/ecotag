@@ -43,15 +43,15 @@ Variables
   --clr-green-dark: hsl(125, 67%, 44%);
   --clr-green-light: hsl(125, 71%, 66%);
   --clr-black: #222;
-  --ff-primary: "Roboto", sans-serif;
-  --ff-secondary: "Open Sans", sans-serif;
+  --ff-primary: "segoe ui", sans-serif;
+  --ff-secondary: "segoe ui", sans-serif;
   --transition: all 0.3s linear;
   --spacing: 0.1rem;
   --radius: 0.25rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  --max-width: 1170px;
-  --fixed-width: 1920px;
+  --max-width: 1170em;
+  --fixed-width: 1920em;
 }
 /*
 =============== 
@@ -105,7 +105,7 @@ p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 351.99px) {
   h1 {
     font-size: 4rem;
   }
@@ -136,17 +136,17 @@ p {
 }
 
 .section-center {
-  width: 1920vw;
+  width: 1920px;
   margin: 0 auto;
   max-width: 1920px;
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1920) {
   .section-center {
-    width: 1920vw;
+    width: 1920px;
   }
 }
 main {
-  min-height: 100vh;
+  min-height: 20vh;
   display: flex;
   place-items: center;
 }
@@ -157,7 +157,7 @@ Reviews
 ===============
 */
 main {
-  min-height: 120vh;
+  min-height: 80vh;
   display: grid;
   place-items: center;
 }
@@ -187,9 +187,10 @@ main {
   box-shadow: var(--light-shadow);
   transition: var(--transition);
   text-align: center;
-  width: 30em;
+  width: 22em;
   display:inline-block;  
   margin-bottom: 10px;
+  flex-grow: 1
 }
 .review:hover {
   box-shadow: var(--dark-shadow);
@@ -202,7 +203,7 @@ main {
   margin: 0 auto;
   margin-bottom: 1.5rem;
 }
-#person-img {
+#logo-img {
   width: 100%;
   display: block;
   height: 100%;
