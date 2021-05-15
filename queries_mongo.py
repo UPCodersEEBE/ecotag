@@ -13,8 +13,11 @@ def get_events_id_from_obj(object_id):
 
 def get_impact_from_obj(object_id):
     object=objects.find_one({"_id": object_id})
-    number_events = object["impact"]
-    return number_events
+    try:
+        impact = object["impact"]
+    except:
+        impact={}
+    return impact
 
 
     
