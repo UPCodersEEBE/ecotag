@@ -28,7 +28,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 @app.post("/object")
 def create_object(request: Dict[Any, Any]):
-    request=json.load(request)
+    print(type(request))
     object=get_object_from_quest(request)
     collection.insert_one(object)
     return object
