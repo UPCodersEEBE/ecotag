@@ -8,8 +8,8 @@ def normal_qr(id):
     return qr
 
 def qr_colors(id,grade):
-    qr = segno.make(id, micro=False)
-    qr = segno.make(id, error='h')
+    #qr = segno.make(id, micro=False)
+    qr = segno.make(f"https://ecotag.heroku.com/object_info/{id}", error='h')
     qr.to_artistic(background=f'static/base/{grade}.png', target=f"static/{id}.png", scale=10)
     #qr.save(f"static/{id}.png",scale = 10)
     return qr

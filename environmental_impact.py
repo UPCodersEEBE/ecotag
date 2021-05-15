@@ -1,8 +1,10 @@
 
 
-def get_grade_from_impact(impact):
-    total_impact = sum(impact.values())
-    if total_impact < 5:
+def get_grade(impact,weight):
+    total_impact = sum(impact.values())*weight/1000
+    if total_impact==0:
+        grade ="no_info"
+    elif total_impact < 5:
         grade = 'a'
     elif total_impact < 15:
         grade= 'b'
@@ -14,5 +16,6 @@ def get_grade_from_impact(impact):
         grade= 'e'
     elif total_impact > 100:
         grade= 'f'
+
     
     return grade

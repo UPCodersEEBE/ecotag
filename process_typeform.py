@@ -29,6 +29,9 @@ def get_object_from_quest (quest):
         fraction_predecessors = []
 
     predecessor_dict = dict(zip(predecessors, fraction_predecessors))
+    impact_weight = {}
+    for key in environmental_impact.keys():
+        impact_weight[key]=environmental_impact[key]*weight/1000
 
     object_info = {
         "_id":object_id,
@@ -36,6 +39,7 @@ def get_object_from_quest (quest):
         "predecessors":predecessor_dict,
         "events":[],
         "impact":environmental_impact,
+        "impact_weight": impact_weight
         "category":category,
         "weight": weight,
         "recycled": recycled,
