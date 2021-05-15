@@ -4,8 +4,10 @@ from typing import Optional, Any, Dict
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 
@@ -52,6 +54,9 @@ def create_event(request: Dict[Any, Any]):
     update_event_from_object(event)
     return event
 
-@app.get("/object/{id}", response_class=HTMLResponse)
-async def read_item(request: Request, id: str):
-    return templates.TemplateResponse("items.html", {"request": request, "id": id})
+@app.get("/object", response_class=HTMLResponse)
+async def read_item(request: Request):
+    object = object_collection.find().limit(1).sort([('$natural',-1)])
+    id=str(list(object)[0]["_id"])
+    qr=normal_qr(id)
+    return templates.TemplateResponse("items.html", {"request": request, "id":id})
