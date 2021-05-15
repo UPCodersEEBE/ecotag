@@ -9,6 +9,8 @@ objects = db.objects
 def get_events_id_from_obj(object_id):
     object=objects.find_one({"_id": object_id})
     events = object["events"]
+    print(events)
+    print(type(events))
     if type(events)==None:
         events=[]
     return events
