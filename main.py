@@ -7,6 +7,7 @@ app = FastAPI()
 
 from process_typeform import get_object_from_quest, get_event_from_quest
 from event_to_object_connection import update_event_from_object
+from qr_processing import normal_qr
 
 from pymongo import MongoClient
 
@@ -26,7 +27,10 @@ def read_root():
 @app.get("/last_record")
 def last_record():
     object = object_collection.find().limit(1).sort([('$natural',-1)])
-    return object
+    id=str(list(object)[0]["_id"])
+    print(type(object))
+    qr=normal_qr(id)
+    return qr
 
 
 
