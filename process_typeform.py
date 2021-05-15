@@ -12,6 +12,15 @@ def get_object_from_quest (dict):
     if answers[1]["boolean"]:
         predecessors = answers[2]["text"]
         predecessors = list(predecessors)
+        environmental_impact={}
+        for predecessors in predecessors:
+            for key in predecessors:
+                if key in environmental_impact[key]:
+                    environmental_impact[key] += predecessors["impact"]
+                else:
+                    environmental_impact[key] = predecessors["impact"]
+                
+         
     else:
         predecessors = []
 
@@ -19,8 +28,8 @@ def get_object_from_quest (dict):
         "_id":object_id,
         "description" :description,
         "predecessors":predecessors,
-        "events":[]
-        
+        "events":[],
+        "impact":environmental_impact
     }
 
     return object_info
