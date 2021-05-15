@@ -11,7 +11,10 @@ def get_object_from_quest (dict):
     description = answers[0]["text"]
     if answers[1]["boolean"]:
         predecessors = answers[2]["text"]
-        predecessors = list(predecessors)
+        if "," in predecessors:
+         predecessors = list(f"[{predecessors}]")
+        else:
+            predecessors=[predecessors]
         environmental_impact={}
         for predecessor in predecessors:
             impact=get_impact_from_obj(predecessor)
