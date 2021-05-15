@@ -17,7 +17,7 @@ def update_event_from_object(event):
     prev_impact= get_impact_from_obj(object_id)
     print(prev_impact)
     new_impact= event["impact"]
-    for k in prev_impact.keys():
+    for k in new_impact.keys():
         prev_impact[k]+=new_impact[k]
     newvalues = { "$set": { "impact": prev_impact } }
     print(newvalues)
