@@ -2,8 +2,12 @@ from threading import Event
 from typing import Optional, Any, Dict
 
 from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+
 
 from process_typeform import get_object_from_quest, get_event_from_quest
 from event_to_object_connection import update_event_from_object
@@ -48,3 +52,6 @@ def create_event(request: Dict[Any, Any]):
     update_event_from_object(event)
     return event
 
+@app.get("/object/{id}", response_class=HTMLResponse)
+async def read_item(request: Request, id: str):
+    return templates.TemplateResponse("items.html", {"request": request, "id": id})
