@@ -24,7 +24,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 @app.post("/object")
 def create_object(request: Request):
-    print(request)
+    print(request.body())
     print(type(request))
     collection.insert_one({"object": "id"})
     return {"item_id": "idddd"}
