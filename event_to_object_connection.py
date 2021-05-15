@@ -9,7 +9,7 @@ event_collection = db['events']
 
 def update_event_from_object(event): 
     
-    event = { "_id": event["_id"] }
+    event_id = { "_id": event["_id"] }
     object_id= event["object"]
 
     prev_impact= get_impact_from_obj(object_id)
@@ -18,7 +18,7 @@ def update_event_from_object(event):
         prev_impact[k]+=new_impact[k]
     newvalues = { "$set": { "impact": prev_impact } }
 
-    list_of_events=get_events_id_from_obj(object_id).append(event["_id"])
+    list_of_events=get_events_id_from_obj(object_id).append(event_id)
 
     newvalues = { "$set": { "impact": prev_impact , "events": list_of_events} }
 
