@@ -1,6 +1,6 @@
 import uuid
 
-from queries_mongo import get_events_id_from_obj
+from queries_mongo import get_events_id_from_obj, get_impact_from_obj
 
 
 def get_object_from_quest (dict):
@@ -13,12 +13,13 @@ def get_object_from_quest (dict):
         predecessors = answers[2]["text"]
         predecessors = list(predecessors)
         environmental_impact={}
-        for predecessors in predecessors:
-            for key in predecessors:
-                if key in environmental_impact[key]:
-                    environmental_impact[key] += predecessors["impact"]
+        for predecessor in predecessors:
+            impact=get_impact_from_obj(predecessor)
+            for key in impact:
+                if key in environmental_impact.keys():
+                    environmental_impact[key] += impact[key]
                 else:
-                    environmental_impact[key] = predecessors["impact"]
+                    environmental_impact[key] = impact[key]
                 
          
     else:
