@@ -1,7 +1,7 @@
 import uuid
 
 def get_object_from_quest (dict):
-    object_id = uuid.uuid4()
+    object_id = str(uuid.uuid4())
     form_response=dict["form_response"]
     answers=form_response["answers"]
     
@@ -20,4 +20,5 @@ def get_object_from_quest (dict):
 
     return object_info
 
+def get_event_from_quest(dict):
 
