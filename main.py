@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Any, Dict
 
 from fastapi import FastAPI, Request
 
@@ -23,6 +23,6 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 
 @app.post("/object")
-def create_object(request: Request):
-    collection.insert_one({"object": request.body})
+def create_object(request: Dict[Any, Any]):
+    collection.insert_one({"object": request})
     return {"item_id": "idddd"}
