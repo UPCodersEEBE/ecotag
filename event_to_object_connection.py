@@ -9,7 +9,7 @@ event_collection = db['events']
 
 def update_event_from_object(event): 
     
-    event_id = { "_id": event["_id"] }
+    event_id = event["_id"]
     object_id= event["object"]
     query={"_id":object_id}
 
