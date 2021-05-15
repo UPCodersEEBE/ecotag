@@ -8,6 +8,8 @@ from process_typeform import get_object_from_quest
 
 from pymongo import MongoClient
 
+import json
+
 alex=MongoClient('mongodb+srv://tampier:tampier@cluster0.wybmf.mongodb.net/ecotag?retryWrites=true&w=majority')
 db = alex['ecotag']
 collection = db['object']
@@ -26,6 +28,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 @app.post("/object")
 def create_object(request: Dict[Any, Any]):
+    request=json.dumps(request)
     object=get_object_from_quest(request)
     collection.insert_one(object)
     return object
