@@ -18,6 +18,8 @@ def update_event_from_object(event):
     print(prev_impact)
     new_impact= event["impact"]
     for k in new_impact.keys():
+        if k not in prev_impact.keys():
+            prev_impact[k]=0
         prev_impact[k]+=new_impact[k]
     newvalues = { "$set": { "impact": prev_impact } }
     print(newvalues)
