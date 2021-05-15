@@ -41,5 +41,6 @@ def create_event(request: Dict[Any, Any]):
     event=get_event_from_quest(request)
     print(event)
     event_collection.insert_one(event)
+    print("line 44")
     update_event_from_object(event)
     return event
