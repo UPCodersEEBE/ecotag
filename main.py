@@ -23,9 +23,10 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/last_record")
+def last_record():
+    object = object_collection.find().limit(1).sort([('$natural',-1)])
+    return object
 
 
 
@@ -42,3 +43,4 @@ def create_event(request: Dict[Any, Any]):
     event_collection.insert_one(event)
     update_event_from_object(event)
     return event
+
