@@ -1,10 +1,12 @@
+from threading import Event
 from typing import Optional, Any, Dict
 
 from fastapi import FastAPI, Request
 
 app = FastAPI()
 
-from process_typeform import get_object_from_quest
+from process_typeform import get_object_from_quest, get_event_from_quest
+from event_to_object_connection import update_object_with_event
 
 from pymongo import MongoClient
 
@@ -12,7 +14,8 @@ import json
 
 alex=MongoClient('mongodb+srv://tampier:tampier@cluster0.wybmf.mongodb.net/ecotag?retryWrites=true&w=majority')
 db = alex['ecotag']
-collection = db['object']
+object_collection = db['objects']
+event_collection = db['events']
 
 @app.get("/")
 def read_root():
@@ -26,9 +29,16 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 
 
-@app.post("/object")
+@app.post("/create_object")
 def create_object(request: Dict[Any, Any]):
-    print(type(request))
     object=get_object_from_quest(request)
-    collection.insert_one(object)
+    object_collection.insert_one(object)
     return object
+
+
+@app.post("/create_event")
+def create_event(request: Dict[Any, Any]):
+    event=get_event_from_quest(request)
+    event_collection.insert_one(event)
+    update_object_with_event(event)
+    return event
