@@ -22,7 +22,7 @@ def get_object_from_quest (quest):
 
     else:
         predecessors = []
-        environmental_impact=0
+        environmental_impact={}
         fraction_predecessors = []
 
     category = answers[1]["choice"]
