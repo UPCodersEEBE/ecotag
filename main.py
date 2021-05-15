@@ -54,8 +54,8 @@ def create_event(request: Dict[Any, Any]):
     update_event_from_object(event)
     return event
 
-@app.get("/object", response_class=HTMLResponse)
-async def read_item(request: Request):
+@app.get("/last_object", response_class=HTMLResponse)
+async def last_object(request: Request):
     object = object_collection.find().limit(1).sort([('$natural',-1)])
     id=str(list(object)[0]["_id"])
     qr=normal_qr(id)
