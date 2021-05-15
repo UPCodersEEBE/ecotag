@@ -6,7 +6,7 @@ from fastapi import FastAPI, Request
 app = FastAPI()
 
 from process_typeform import get_object_from_quest, get_event_from_quest
-from event_to_object_connection import update_object_with_event
+from event_to_object_connection import update_event_from_object
 
 from pymongo import MongoClient
 
@@ -19,7 +19,7 @@ event_collection = db['events']
 
 @app.get("/")
 def read_root():
-    collection.insert_one({"Hello":"World"})
+    object_collection.insert_one({"Hello":"World"})
     return {"Hello": "World"}
 
 
