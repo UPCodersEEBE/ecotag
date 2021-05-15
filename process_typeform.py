@@ -12,21 +12,22 @@ def get_object_from_quest (quest):
     answers=form_response["answers"]
     
     description = answers[0]["text"]
-    if answers[3]["boolean"]:
+
+    if answers[3]["boolean"]: #sihi ha predeessors agafa el seu imacte
         predecessors = answers[5]["text"]
-        environmental_impact = get_predecessors_environmental_impact(predecessors)             
+        environmental_impact = get_predecessors_environmental_impact(predecessors)    
+
+        fraction_predecessors = answers[6]["text"]
+        environmental_impact = get_fraction_from_predecessors(fraction_predecessors)         
+
     else:
         predecessors = []
+        environmental_impact=0
+        fraction_predecessors = []
 
     category = answers[1]["choice"]
     weight = answers[2]["number"]
     recycled = answers[3]["boolean"]
-
-    if answers[3]["boolean"]:
-        fraction_predecessors = answers[6]["text"]
-        environmental_impact = get_fraction_from_predecessors(fraction_predecessors)             
-    else:
-        fraction_predecessors = []
 
     predecessor_dict = dict(zip(predecessors, fraction_predecessors))
     impact_weight = {}
