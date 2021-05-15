@@ -16,6 +16,7 @@ from process_typeform import get_object_from_quest, get_event_from_quest
 from event_to_object_connection import update_event_from_object
 from qr_processing import normal_qr
 from qr_processing import qr_colors
+from queries_mongo import get_object_from_id
 
 from environmental_impact import get_grade_from_impact
 
@@ -47,6 +48,12 @@ def create_event(request: Dict[Any, Any]):
     event_collection.insert_one(event)
     update_event_from_object(event)
     return event
+
+
+@app.get("/object_info/{id}")
+async def object_info(id:str):
+    object=get_object_from_id(id)
+    return object
 
 @app.get("/last_object", response_class=HTMLResponse)
 async def last_object(request: Request):
