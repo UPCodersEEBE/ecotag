@@ -31,7 +31,9 @@ def get_event_from_quest(dict):
     answers=form_response["answers"]
     
     object_id = answers[0]["text"]
+
     n=len(get_events_id_from_obj(object_id))
+    
     event_id=object_id+"_"+str(n)
 
     description = answers[1]["text"]

@@ -8,8 +8,11 @@ objects = db.objects
 
 def get_events_id_from_obj(object_id):
     object=objects.find_one({"_id": object_id})
-    number_events = object["events"]
-    return number_events
+    try:
+        events = object["events"]
+    except:
+        events=[]
+    return events
 
 def get_impact_from_obj(object_id):
     object=objects.find_one({"_id": object_id})
