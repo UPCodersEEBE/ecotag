@@ -25,4 +25,10 @@ def get_impact_from_obj(object_id):
 def get_object_from_id(object_id):
     object=objects.find_one({"_id": object_id})
     return object
+
+def get_weight_from_id(object_id):
+    object=objects.find_one({"_id": object_id})
+    weight = object["weight"]
+    return weight
+    
     

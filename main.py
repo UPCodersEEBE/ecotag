@@ -25,9 +25,8 @@ app.add_middleware(
 
 from process_typeform import get_object_from_quest, get_event_from_quest
 from event_to_object_connection import update_event_from_object
-from qr_processing import normal_qr
-from qr_processing import qr_colors
-from queries_mongo import get_object_from_id
+from qr_processing import normal_qr, qr_colors
+from queries_mongo import get_object_from_id, get_weight_from_id
 
 from environmental_impact import get_grade
 
@@ -68,6 +67,11 @@ async def object_info(id:str):
     object=get_object_from_id(id)
     return object
 
+@app.get("/oi/{id}")
+async def object_info(id:str):
+    object=get_object_from_id(id)
+    return object
+
 @app.get("/last_object", response_class=HTMLResponse)
 async def last_object(request: Request):
     object = object_collection.find().limit(1).sort([('$natural',-1)])
@@ -78,6 +82,7 @@ async def last_object(request: Request):
 @app.get("/qr_coloraines/{id}")
 async def qr_coloraines(request: Request, id:str):
     impact=get_impact_from_obj(id)
-    grade=get_grade(impact)
+    weight = get_weight_from_id(id)
+    grade=get_grade(impact, weight)
     qr=qr_colors(id, grade)
     return templates.TemplateResponse("items.html", {"request": request, "id":id})
