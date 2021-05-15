@@ -29,7 +29,7 @@ from qr_processing import normal_qr
 from qr_processing import qr_colors
 from queries_mongo import get_object_from_id
 
-from environmental_impact import get_grade_from_impact
+from environmental_impact import get_grade
 
 from pymongo import MongoClient
 
@@ -78,6 +78,6 @@ async def last_object(request: Request):
 @app.get("/qr_coloraines/{id}")
 async def qr_coloraines(request: Request, id:str):
     impact=get_impact_from_obj(id)
-    grade=get_grade_from_impact(impact)
+    grade=get_grade(impact)
     qr=qr_colors(id, grade)
     return templates.TemplateResponse("items.html", {"request": request, "id":id})
