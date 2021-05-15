@@ -39,7 +39,7 @@ def get_object_from_quest (quest):
         "predecessors":predecessor_dict,
         "events":[],
         "impact":environmental_impact,
-        "impact_weight": impact_weight
+        "impact_weight": impact_weight,
         "category":category,
         "weight": weight,
         "recycled": recycled,
