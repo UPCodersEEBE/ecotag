@@ -34,6 +34,7 @@ def get_object_from_quest (quest):
     recycled = answers[3]["boolean"]
 
     predecessor_dict = dict(zip(predecessors, fraction_predecessors))
+    print(predecessor_dict)
     impact_weight = {}
     for key in environmental_impact.keys():
         impact_weight[key]=environmental_impact[key]*weight/1000
