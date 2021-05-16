@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="container">
-  <div class="row">
+  <div class="row align-items-center">
     <div class="col">
       <img src="/static/{{object._id}}.png">
     </div>
@@ -12,34 +12,34 @@
       <p> {{object}} <p>
     </div>
   </div>
+
   <div class="row">
       <div class="col">
-        <div class="card text-center" style="width: 18rem;">
-          <i class="fas fa-tint"></i>
+        <div class="card text-center" >
           <div class="card-body">
-            <h5 class="card-title">{{ object.impact["H2O"]}} L of water</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title"><i class="fas fa-tint"></i> {{ object.impact["H2O"]}}L of water</h5>
+            <p class="card-text"> Almost 40% of the world population and many ecosystems are suffering from water scarcity. Global stress on water resources is increasing as a consequence of population growth. </p>
             <a href="https://friendsoftheearth.uk/sustainable-living/13-best-ways-save-water" target="_blank"
-              class="btn btn-primary">Save Water</a>
+              class="btn btn-dark">Save Water</a>
           </div>
         </div>
       </div>
       <div class="col">
-        <div class="card text-center" style="width: 18rem;">
+        <div class="card text-center">
           <div class="card-body">
-            <h5 class="card-title">{{ object.impact["CO2"]}} kg of CO₂</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title"><i class="fas fa-temperature-high"></i> {{ object.impact["CO2"]}} kg of CO₂</h5>
+            <p class="card-text">The major threat from increased CO₂ is the greenhouse effect. As a greenhouse gas, excessive CO₂ creates a cover that traps the sun's energy in the atmosphere, warming the planet.</p>
             <a href="https://www.epa.gov/ghgemissions/overview-greenhouse-gases" target ="_blank"
-             class="btn btn-primary">Climate Change!</a>
+             class="btn btn-dark">Climate Change!</a>
           </div>
         </div>
       </div>
       <div class="col">
-        <div class="card text-center" style="width: 18rem;">
+        <div class="card text-center">
           <div class="card-body">
-            <h5 class="card-title">{{ object.impact["E"]}} kWh</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-primary">Energy Saving</a>
+            <h5 class="card-title"><i class="fas fa-bolt"></i> {{ object.impact["E"]}} kWh</h5>
+            <p class="card-text">There is a strong positive relationship between climate change and energy consumption. The phenomenon of climate change could be controlled by reducing energy consumption. </p>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-dark">Energy Saving</a>
           </div>
         </div>
       </div>

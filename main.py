@@ -42,9 +42,9 @@ object_collection = db['objects']
 event_collection = db['events']
 
 @app.get("/")
-def read_root():
-    print("Hello")
-    return {"Hello": "World"}
+def read_root(request: Request):
+    return templates.TemplateResponse("start.html", {"request": request})
+
 
 
 @app.post("/create_object")
