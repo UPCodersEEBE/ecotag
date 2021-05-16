@@ -19,7 +19,7 @@ print(get_environmental_impact_right(list_of_env_imp,fraction_predecessors))
 def from_string_to_list(stringa): #predecessors from string as answer on typeform to list
     if ',' in stringa:
          l = list(f"[{stringa}]")
-         l=stringa.split(",")
+         l=stringa.split(", ")
     else:
           l=[stringa]
     return l
@@ -27,7 +27,7 @@ def from_string_to_list(stringa): #predecessors from string as answer on typefor
 def from_string_to_list_floats(stringa): #predecessors from string as answer on typeform to list
     if ',' in stringa:
         l = list(f"[{stringa}]")
-        l=stringa.split(",")
+        l=stringa.split(", ")
         m=[]
         for e in l:
             m.append(float(e))
@@ -37,4 +37,6 @@ def from_string_to_list_floats(stringa): #predecessors from string as answer on 
     return l
 
 print(from_string_to_list("n, om"))
+
+print( dict(zip(["ab",'b'], [0.5,0.8])))
 
