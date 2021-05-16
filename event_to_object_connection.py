@@ -27,7 +27,9 @@ def update_object_from_event(event):
     list_of_events=get_events_id_from_obj(object_id)
     list_of_events.append(event_id)
     weight = get_weight_from_id(object_id)
-    prev_impact_weight = prev_impact*weight/1000
+    prev_impact_weight = {}
+    for key in prev_impact:
+        prev_impact_weight[key]= prev_impact[key]*weight/1000
     newvalues = { "$set": { "impact": prev_impact , "impact_weight": prev_impact_weight , "events": list_of_events} }
     print(newvalues)
     object_collection.update_one(query, newvalues)
