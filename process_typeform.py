@@ -20,7 +20,7 @@ def get_object_from_quest (quest):
         print(fraction_predecessors)
 
         environmental_impact_pred = get_predecessors_environmental_impact(predecessors)  #sumat
-        fraction_predecessors = get_fraction_from_predecessors(fraction_predecessors)    
+        #fraction_predecessors = get_fraction_from_predecessors(fraction_predecessors)    
 
         environmental_impact = get_environmental_impact_right(predecessors, fraction_predecessors)
 

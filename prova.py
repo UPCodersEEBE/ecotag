@@ -38,5 +38,5 @@ def from_string_to_list_floats(stringa): #predecessors from string as answer on 
 
 print(from_string_to_list("n, om"))
 
-print( dict(zip(["ab",'b'], [0.5,0.8])))
+print( dict(zip(["ab","b"], [0.5,0.8])))
 
