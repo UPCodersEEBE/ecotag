@@ -5,6 +5,7 @@ from queries_mongo import get_events_id_from_obj, get_impact_from_obj
 from functions_for_process_typeform import get_predecessors_environmental_impact,get_fraction_from_predecessors, get_environmental_impact_right
 
 def get_object_from_quest (quest):
+    print(quest)
     object_id = str(uuid.uuid4())[0:12]
     form_response=quest["form_response"]
     answers=form_response["answers"]
@@ -45,7 +46,7 @@ def get_object_from_quest (quest):
         "weight": weight,
         "recycled": recycled,
     }
-
+    print(object_info)
     return object_info
 
 def get_event_from_quest(dict):
