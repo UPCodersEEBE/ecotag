@@ -58,6 +58,7 @@ def create_object(request: Dict[Any, Any]):
 def create_event(request: Dict[Any, Any]):
     event=get_event_from_quest(request)
     event_collection.insert_one(event)
+    print(event)
     update_object_from_event(event)
     return event
 
