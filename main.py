@@ -86,4 +86,4 @@ async def qr_coloraines(request: Request, id:str):
     weight = get_weight_from_id(id)
     grade=get_grade(impact, weight)
     qr=qr_colors(id, grade)
-    return templates.TemplateResponse("items.html", {"request": request, "id":id})
+    return FileResponse(f"static/{id}.png")
