@@ -16,14 +16,11 @@ def get_object_from_quest (quest):
         print("Hi ha predecessors")
         predecessors = from_string_to_list(answers[5]["text"])
         fraction_predecessors = from_string_to_list_floats(answers[6]["text"])
-        print(predecessors)
-        print(fraction_predecessors)
 
         environmental_impact_pred = get_predecessors_environmental_impact(predecessors)  #sumat
-        #fraction_predecessors = get_fraction_from_predecessors(fraction_predecessors)    
 
         environmental_impact = get_environmental_impact_right(predecessors, fraction_predecessors)
-
+        print(environmental_impact)
     else:
         predecessors = []
         environmental_impact={}
