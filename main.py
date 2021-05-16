@@ -24,7 +24,7 @@ app.add_middleware(
 )
 
 from process_typeform import get_object_from_quest, get_event_from_quest
-from event_to_object_connection import update_event_from_object
+from event_to_object_connection import update_object_from_event
 from qr_processing import normal_qr, qr_colors, qr_color_make
 from queries_mongo import get_object_from_id, get_weight_from_id
 
@@ -58,7 +58,7 @@ def create_object(request: Dict[Any, Any]):
 def create_event(request: Dict[Any, Any]):
     event=get_event_from_quest(request)
     event_collection.insert_one(event)
-    update_event_from_object(event)
+    update_object_from_event(event)
     return event
 
 

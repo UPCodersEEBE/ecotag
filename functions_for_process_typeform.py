@@ -1,10 +1,6 @@
 from queries_mongo import get_impact_from_obj
 
 def get_predecessors_environmental_impact(predecessors):
-    if "," in predecessors:
-         predecessors = list(f"[{predecessors}]")
-    else:
-          predecessors=[predecessors]
     environmental_impact={}
     for predecessor in predecessors:
         impact=get_impact_from_obj(predecessor)
@@ -23,3 +19,19 @@ def get_fraction_from_predecessors(fraction_predecessors):
           fraction_predecessors=[fraction_predecessors]
     return fraction_predecessors
     
+
+def get_environmental_impact_right(predecessors,fraction_predecessors):
+    list_of_env_imp=[]
+    for predecessor in predecessors:
+        list_of_env_imp.append(get_impact_from_obj(predecessor))
+
+    env_imp_right={}
+    for key in list_of_env_imp[0].keys():
+        sum=0
+        for i in range(0,len(predecessors)):
+            sum+=list_of_env_imp[i][key]*fraction_predecessors[i]
+        env_imp_right[key]=sum
+
+    return env_imp_right
+        
+

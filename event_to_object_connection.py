@@ -1,5 +1,5 @@
 
-from queries_mongo import get_events_id_from_obj,get_impact_from_obj
+from queries_mongo import get_events_id_from_obj,get_impact_from_obj,get_weight_from_id
 from pymongo import MongoClient
 
 alex=MongoClient('mongodb+srv://tampier:tampier@cluster0.wybmf.mongodb.net/ecotag?retryWrites=true&w=majority')
@@ -7,7 +7,7 @@ db = alex['ecotag']
 object_collection = db['objects']
 event_collection = db['events']
 
-def update_event_from_object(event): 
+def update_object_from_event(event): 
     
     event_id = event["_id"]
     object_id= event["object"]
@@ -23,8 +23,9 @@ def update_event_from_object(event):
     
     list_of_events=get_events_id_from_obj(object_id)
     list_of_events.append(event_id)
-
-    newvalues = { "$set": { "impact": prev_impact , "events": list_of_events} }
+    weight = get_weight_from_id(object_id)
+    prev_impact_weight = prev_impact*weight/1000
+    newvalues = { "$set": { "impact": prev_impact , "impact_weight": prev_impact_weight , "events": list_of_events} }
 
     object_collection.update_one(query, newvalues)
 
