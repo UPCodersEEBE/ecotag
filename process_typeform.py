@@ -13,7 +13,7 @@ def get_object_from_quest (quest):
 
     if answers[3]["boolean"]: #sihi ha predeessors agafa el seu imacte
         predecessors = from_string_to_list(answers[5]["text"])
-        fraction_predecessors = from_string_to_list(answers[6]["text"])
+        fraction_predecessors = from_string_to_list_floats(answers[6]["text"])
 
         environmental_impact_pred = get_predecessors_environmental_impact(predecessors)  #sumat
         fraction_predecessors = get_fraction_from_predecessors(fraction_predecessors)    
@@ -74,12 +74,24 @@ def get_event_from_quest(dict):
     
     return event_info
 
-
 def from_string_to_list(stringa): #predecessors from string as answer on typeform to list
-    if "," in stringa:
+    if ',' in stringa:
          l = list(f"[{stringa}]")
+         l=stringa.split(",")
     else:
           l=[stringa]
+    return l
+
+def from_string_to_list_floats(stringa): #predecessors from string as answer on typeform to list
+    if ',' in stringa:
+        l = list(f"[{stringa}]")
+        l=stringa.split(",")
+        m=[]
+        for e in l:
+            m.append(float(e))
+        l=m
+    else:
+          l=[float(stringa)]
     return l
 
 
