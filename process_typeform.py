@@ -82,7 +82,7 @@ def get_event_from_quest(dict):
 def from_string_to_list(stringa): #predecessors from string as answer on typeform to list
     if ',' in stringa:
          l = list(f"[{stringa}]")
-         l=stringa.split(",")
+         l=stringa.split(", ")
     else:
           l=[stringa]
     return l
@@ -90,7 +90,7 @@ def from_string_to_list(stringa): #predecessors from string as answer on typefor
 def from_string_to_list_floats(stringa): #predecessors from string as answer on typeform to list
     if ',' in stringa:
         l = list(f"[{stringa}]")
-        l=stringa.split(",")
+        l=stringa.split(", ")
         m=[]
         for e in l:
             m.append(float(e))
